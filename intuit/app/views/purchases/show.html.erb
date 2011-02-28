@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Price:</b>
+  <%= @purchase.price %>
+</p>
+
+<p>
+  <b>Where:</b>
+  <%= @purchase.where %>
+</p>
+
+<p>
+  <b>When:</b>
+  <%= @purchase.when %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%= @purchase.rating %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @purchase.category %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @purchase.comment %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @purchase.image_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_purchase_path(@purchase) %> |
+<%= link_to 'Back', purchases_path %>
