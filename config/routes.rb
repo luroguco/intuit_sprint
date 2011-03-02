@@ -1,4 +1,8 @@
 Intuit::Application.routes.draw do
+  get "csv/import"
+
+  resources :transactions
+
   resources :purchases
 
   # The priority is based upon order of creation:

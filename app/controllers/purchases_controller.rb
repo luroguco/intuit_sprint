@@ -1,12 +1,14 @@
 class PurchasesController < ApplicationController
   # GET /purchases
   # GET /purchases.xml
+  # GET /purchases.json
   def index
     @purchases = Purchase.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @purchases }
+      format.json { render :json => @purchases }
     end
   end
 
@@ -18,6 +20,7 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @purchase }
+      format.json { render :json => @purchases }
     end
   end
 
@@ -29,6 +32,7 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @purchase }
+      format.json { render :json => @purchases }
     end
   end
 
@@ -65,6 +69,7 @@ class PurchasesController < ApplicationController
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @purchase.errors, :status => :unprocessable_entity }
+        format.json { render :json => @purchase.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -78,6 +83,7 @@ class PurchasesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(purchases_url) }
       format.xml  { head :ok }
+      format.json { head :ok }
     end
   end
 end
