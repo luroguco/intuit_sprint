@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+(1..100).each do |i|
+  Purchase.create(:price => "#{i}", :where => "#{i} Main Street", :when => "", :rating => "#{i}", :category => "",
+  :comment => "i spend money", :image_url => "")
+end
