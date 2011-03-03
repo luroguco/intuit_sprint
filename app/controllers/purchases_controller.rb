@@ -6,7 +6,6 @@ class PurchasesController < ApplicationController
   # GET /purchases.json
   def index
     @purchases = Purchase.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @purchases }

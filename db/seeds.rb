@@ -6,8 +6,6 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-purchases = Purchase.create([{:price => '49.65', :where => 'Delicious Delights', :when => '20110214 03:15:56', :rating => '5', :category => 'food', :comment => 'That red velvet cupcake was fucking incredible', :image_url => 'http://lifewithcake.com/wp-content/uploads/2009/03/red-velvet-cupcake2-450x299.jpg'}])
-
 # == Schema Information
 #
 # Table name: purchases
@@ -23,3 +21,8 @@ purchases = Purchase.create([{:price => '49.65', :where => 'Delicious Delights',
 #  created_at :datetime
 #  updated_at :datetime
 #
+
+(1..100).each do |i|
+  Purchase.create(:price => "#{i}", :where => "#{i} Main Street", :when => "", :rating => "#{i}", :category => "",
+  :comment => "i spend money", :image_url => "")
+end

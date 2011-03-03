@@ -1,4 +1,13 @@
+<%- content_for(:head) do -%>
+
+  <%= javascript_include_tag 'RGraph.common.core' %>
+    <%= javascript_include_tag 'RGraph.common.tooltips' %>
+    <%= javascript_include_tag 'RGraph.line' %>
+    <%= javascript_include_tag 'RGraph.common.context' %>
+      <%- end -%>
+
 <h1>Listing purchases</h1>
+<canvas id="myLine" width="800" height="220">[Please wait for the onload event to fire...]</canvas>
 
 <table>
   <tr>
@@ -13,8 +22,13 @@
     <th></th>
     <th></th>
   </tr>
-
+  <% prices = []%>
+  <% places = []%>
+  <% times = [] %>
 <% @purchases.each do |purchase| %>
+      <% prices << purchase.price %>
+      <% places << purchase.where %>
+      <% times << purchase.when %>
   <tr>
     <td><%= purchase.price %></td>
     <td><%= purchase.where %></td>
@@ -31,5 +45,43 @@
 </table>
 
 <br />
+
+
+        <script async>
+            /**
+            * Create the line graph
+            */
+            function CreateLineChart()
+            {
+                var data1 = new Array();
+                data1 = <%= prices.inspect %>;
+
+                var myLine = new RGraph.Line('myLine', data1);
+                myLine.Set('chart.tooltips',<%= array_or_string_for_javascript(places) %>)
+                myLine.Set('chart.colors', ['red']);
+                myLine.Set('chart.labels', <%= array_or_string_for_javascript(times)%>)
+                myLine.Set('chart.tickmarks', null);
+                myLine.Set('chart.shadow', true);
+                myLine.Set('chart.shadow.offsety', 2);
+                myLine.Set('chart.shadow.offsetx', 2);
+                myLine.Set('chart.shadow.blur', 15);
+                myLine.Set('chart.linewidth', 5);
+                myLine.Set('chart.hmargin', 5);
+                myLine.Set('chart.background.grid.width', 1);
+                myLine.Set('chart.background.grid.color', '#ddd');
+                myLine.Set('chart.background.barcolor1', 'white');
+                myLine.Set('chart.background.barcolor2', 'white');
+                myLine.Set('chart.title', 'All purchases');
+                myLine.Set('chart.gutter', 50);
+                myLine.Set('chart.noaxes', true);
+                myLine.Set('chart.yaxispos', false);
+                myLine.Set('chart.ymin', 10);
+                myLine.Set('chart.units.pre', '$')
+                myLine.Draw();
+
+            }
+
+            if (!document.all) CreateLineChart();
+        </script>
 
 <%= link_to 'New Purchase', new_purchase_path %>
