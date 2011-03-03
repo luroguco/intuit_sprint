@@ -1,4 +1,6 @@
 class PurchasesController < ApplicationController
+   skip_before_filter :verify_authenticity_token
+
   # GET /purchases
   # GET /purchases.xml
   # GET /purchases.json
